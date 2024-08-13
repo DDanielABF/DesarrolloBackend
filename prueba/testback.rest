@@ -1,0 +1,4 @@
+//GET http://localhost:3000/alumnos/consultar-alumno/4to%20grado
+
+GET http://localhost:3000/alumnos/consultar-alumno/2do%20grado
+x-api-key: DanielBarrera
