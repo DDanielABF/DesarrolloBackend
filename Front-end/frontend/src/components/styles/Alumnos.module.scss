@@ -61,11 +61,29 @@
   
   .listContainer {
     width: 100%;
-    background-color: #f0f2f5;
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    transition: transform 0.3s ease-in-out;
+  }
   
-}
+  .alumnoList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .alumnoItem {
+    background-color: #f7f9fc;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
 
 .select {
     font-family: 'Roboto', sans-serif;
