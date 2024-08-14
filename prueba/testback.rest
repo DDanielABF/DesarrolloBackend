@@ -1,4 +1,31 @@
 //GET http://localhost:3000/alumnos/consultar-alumno/4to%20grado
 
-GET http://localhost:3000/alumnos/consultar-alumno/2do%20grado
+GET http://localhost:3000/alumnos/consultar-alumno/5to%20grado
 x-api-key: DanielBarrera
+//POST http://localhost:3000/alumnos/crear-alumno
+//Content-Type: application/json
+//x-api-key: DanielBarrera
+
+//{
+ // "nombre": "Juan Pérez",
+  //"fechaNacimiento": "2005-05-15",
+  //"nombrePadre": "Carlos Pérez",
+ // "nombreMadre": "Lucía Gómez",
+ // "grado": "5to grado",
+ // "seccion": "B",
+  //"fechaIngreso": "2020-02-20"
+//}
+POST http://localhost:3000/alumnos/crear-alumno
+Content-Type: application/json
+x-api-key: DanielBarrera
+
+{
+  "nombre": "Marielos Rojas",
+  "fechaNacimiento": "2000-05-15",
+  "nombrePadre": "juan  ortiz",
+  "nombreMadre": "Lucía alvarado",
+  "grado": "5to grado",
+  "seccion": "B",
+  "fechaIngreso": "2020-02-20"
+}
+
