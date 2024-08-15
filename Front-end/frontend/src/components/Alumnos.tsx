@@ -17,7 +17,7 @@ interface Alumno {
 
 const Alumnos: React.FC = () => {
   const [alumnos, setAlumnos] = useState<Alumno[]>([]);
-  const [grado, setGrado] = useState<string>('5to grado'); // Estado para manejar el grado seleccionado
+  const [grado, setGrado] = useState<string>('5to grado');
 
   const { register, handleSubmit, reset } = useForm<Alumno>();
 
@@ -41,8 +41,8 @@ const Alumnos: React.FC = () => {
       await axios.post('http://localhost:3000/alumnos/crear-alumno', data, {
         headers: { 'x-api-key': 'DanielBarrera' },
       });
-      fetchAlumnos(); // Actualiza la lista de alumnos después de añadir uno nuevo
-      reset(); // Limpia el formulario
+      fetchAlumnos();
+      reset();
     } catch (error) {
       console.error('Error adding alumno:', error);
     }
@@ -79,13 +79,15 @@ const Alumnos: React.FC = () => {
             {...register('nombre', { required: true })}
             className={styles.input}
           />
-          <input
-            type="date"
-            placeholder="Fecha de Nacimiento"
-            {...register('fechaNacimiento', { required: true })}
-            className={styles.input}
-            aria-label="Fecha de Nacimiento"
-          />
+       <label className={styles.label} htmlFor="fechaNacimiento">Fecha de Nacimiento</label>
+<input
+  type="date"
+  id="fechaNacimiento"
+  {...register('fechaNacimiento', { required: true })}
+  className={styles.input}
+  aria-label="Fecha de Nacimiento"
+/>
+
           <input
             type="text"
             placeholder="Nombre del Padre"
@@ -115,6 +117,7 @@ const Alumnos: React.FC = () => {
             {...register('seccion', { required: true })}
             className={styles.input}
           />
+          <label className={styles.label} htmlFor="fechaNacimiento">Fecha de Ingreso</label>
           <input
             type="date"
             placeholder="Fecha de Ingreso"
@@ -165,24 +168,37 @@ const Alumnos: React.FC = () => {
         transition={{ duration: 0.5 }}
       >
         <h2>Lista de Alumnos</h2>
-        <ul className={styles.alumnoList}>
-          {alumnos.map((alumno) => (
-            <motion.li 
-              key={alumno._id}
-              className={styles.alumnoItem}
-              whileHover={{ scale: 1.05 }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <strong>{alumno.nombre}</strong> - {alumno.grado} ({alumno.seccion})
-            </motion.li>
-          ))}
-        </ul>
+        <table className={styles.alumnoTable}>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Grado</th>
+              <th>Sección</th>
+              <th>Fecha de Ingreso</th>
+            </tr>
+          </thead>
+          <motion.tbody
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            {alumnos.map((alumno) => (
+              <motion.tr 
+                key={alumno._id}
+                whileHover={{ scale: 1.02 }}
+                className={styles.alumnoRow}
+              >
+                <td>{alumno.nombre}</td>
+                <td>{alumno.grado}</td>
+                <td>{alumno.seccion}</td>
+                <td>{new Date(alumno.fechaIngreso).toLocaleDateString()}</td>
+              </motion.tr>
+            ))}
+          </motion.tbody>
+        </table>
       </motion.div>
     </motion.div>
   );
 };
 
 export default Alumnos;
-
